@@ -36,23 +36,6 @@ const HeroSection = () => {
             >
               Empezar ahora
             </Button>
-
-            {/* Demo Access Card */}
-            <Card className="bg-card/50 border-primary/20 shadow-card">
-              <CardContent className="p-6">
-                <div className="flex items-start space-x-3">
-                  <div className="w-3 h-3 bg-destructive rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">
-                      Acceso Rápido Demo:
-                    </h3>
-                    <p className="text-muted-foreground">
-                      Explora todas las funcionalidades de la plataforma sin compromiso.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
 
           {/* Right Column - Dashboard Panel */}
