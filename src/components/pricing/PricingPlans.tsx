@@ -7,7 +7,7 @@ const PricingPlans = () => {
   const plans = [
     {
       name: "📌 Plan Básico",
-      price: "75",
+      price: "55",
       icon: User,
       description: "Compliance fiscal básico con supervisión profesional",
       popular: false,
@@ -22,7 +22,7 @@ const PricingPlans = () => {
     },
     {
       name: "📌 Plan Intermedio",
-      price: "180",
+      price: "150",
       icon: Users,
       description: "Compliance fiscal completo con atención personalizada",
       popular: true,
@@ -40,7 +40,7 @@ const PricingPlans = () => {
     },
     {
       name: "📌 Plan Avanzado",
-      price: "300",
+      price: "275",
       icon: Building,
       description: "Compliance fiscal premium con soporte prioritario",
       popular: false,
