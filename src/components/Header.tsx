@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,17 +18,34 @@ const Header = () => {
   }, []);
 
   const menuItems = [
-    { label: "Inicio", href: "#inicio" },
-    { label: "Cómo funciona", href: "#como-funciona" },
-    { label: "Beneficios", href: "#beneficios" },
-    { label: "Testimonios", href: "#testimonios" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Inicio", href: "#inicio", type: "scroll" },
+    { label: "Cómo funciona", href: "#como-funciona", type: "scroll" },
+    { label: "Beneficios", href: "#beneficios", type: "scroll" },
+    { label: "Testimonios", href: "#testimonios", type: "scroll" },
+    { label: "Precios", href: "/pricing", type: "route" },
+    { label: "FAQ", href: "#faq", type: "scroll" },
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const handleNavigation = (item: { label: string; href: string; type: string }) => {
+    if (item.type === "route") {
+      navigate(item.href);
+    } else {
+      // If we're not on the home page, navigate to home first
+      if (location.pathname !== "/") {
+        navigate("/");
+        // Wait a bit for navigation to complete, then scroll
+        setTimeout(() => {
+          const element = document.querySelector(item.href);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      } else {
+        const element = document.querySelector(item.href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
     }
     setIsMobileMenuOpen(false);
   };
@@ -37,16 +57,19 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="text-2xl font-bold text-primary">
+          <button 
+            onClick={() => navigate("/")}
+            className="text-2xl font-bold text-primary hover:opacity-80 transition-opacity"
+          >
             Asesfy
-          </div>
+          </button>
 
           {/* Desktop Menu */}
           <nav className="hidden md:flex items-center space-x-8">
             {menuItems.map((item) => (
               <button
                 key={item.label}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => handleNavigation(item)}
                 className="text-foreground hover:text-primary transition-colors duration-300"
               >
                 {item.label}
@@ -81,7 +104,7 @@ const Header = () => {
               {menuItems.map((item) => (
                 <button
                   key={item.label}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleNavigation(item)}
                   className="text-left text-foreground hover:text-primary transition-colors duration-300"
                 >
                   {item.label}
