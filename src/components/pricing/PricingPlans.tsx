@@ -7,7 +7,7 @@ const PricingPlans = () => {
   const plans = [
     {
       name: "📌 Plan Básico",
-      price: "55",
+      price: "66,55",
       icon: User,
       description: "Compliance fiscal básico con supervisión profesional",
       popular: false,
@@ -22,7 +22,7 @@ const PricingPlans = () => {
     },
     {
       name: "📌 Plan Intermedio",
-      price: "150",
+      price: "181,50",
       icon: Users,
       description: "Compliance fiscal completo con atención personalizada",
       popular: true,
@@ -40,7 +40,7 @@ const PricingPlans = () => {
     },
     {
       name: "📌 Plan Avanzado",
-      price: "275",
+      price: "332,75",
       icon: Building,
       description: "Compliance fiscal premium con soporte prioritario",
       popular: false,
@@ -89,9 +89,12 @@ const PricingPlans = () => {
                     <IconComponent className="w-8 h-8 text-primary" />
                   </div>
                   <CardTitle className="text-2xl font-bold mb-2">{plan.name}</CardTitle>
-                  <div className="flex items-center justify-center gap-2 mb-3">
-                    <span className="text-4xl font-bold text-primary">{plan.price}€</span>
-                    <span className="text-muted-foreground">/mes</span>
+                  <div className="flex flex-col items-center justify-center mb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-4xl font-bold text-primary">{plan.price}€</span>
+                      <span className="text-muted-foreground">/mes</span>
+                    </div>
+                    <span className="text-sm text-muted-foreground mt-1">IVA incluido</span>
                   </div>
                   <CardDescription className="text-base leading-relaxed">
                     {plan.description}
