@@ -18,14 +18,21 @@ const Header = () => {
     { label: "Inicio", href: "#inicio" },
     { label: "Cómo funciona", href: "#como-funciona" },
     { label: "Beneficios", href: "#beneficios" },
+    { label: "Servicios Puntuales", href: "/pricing" },
     { label: "Testimonios", href: "#testimonios" },
     { label: "FAQ", href: "#faq" },
   ];
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (href.startsWith('/')) {
+      // External route - navigate using window.location
+      window.location.href = href;
+    } else {
+      // Internal section - scroll to element
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
     setIsMobileMenuOpen(false);
   };
