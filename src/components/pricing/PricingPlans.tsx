@@ -17,7 +17,8 @@ const PricingPlans = () => {
         "Acceso a la contratación de servicios puntuales adicionales, según las necesidades específicas de la empresa"
       ],
       buttonText: "Elegir Plan Básico",
-      buttonVariant: "outline" as const
+      buttonVariant: "outline" as const,
+      stripeLink: "https://buy.stripe.com/dRm28se6cfCD0Cl4KSbo405"
     },
     {
       name: "📌 Plan Intermedio",
@@ -34,7 +35,8 @@ const PricingPlans = () => {
         "Acceso a la contratación de servicios puntuales adicionales, con condiciones preferenciales"
       ],
       buttonText: "Elegir Plan Intermedio",
-      buttonVariant: "cta" as const
+      buttonVariant: "cta" as const,
+      stripeLink: "https://buy.stripe.com/9B69AUaU03TV5WF3GObo406"
     },
     {
       name: "📌 Plan Avanzado",
@@ -51,7 +53,8 @@ const PricingPlans = () => {
         "Acceso a la contratación de servicios puntuales adicionales, con prioridad en la asignación de consultores"
       ],
       buttonText: "Elegir Plan Avanzado",
-      buttonVariant: "hero" as const
+      buttonVariant: "hero" as const,
+      stripeLink: "https://buy.stripe.com/bJe6oI8LSbmn84N4KSbo407"
     }
   ];
 
@@ -109,7 +112,7 @@ const PricingPlans = () => {
                     variant={plan.buttonVariant}
                     size="lg" 
                     className="w-full font-semibold"
-                    onClick={() => window.open("https://tally.so/r/31QNWg", "_blank")}
+                    onClick={() => window.open(plan.stripeLink, "_blank")}
                   >
                     {plan.buttonText}
                   </Button>
