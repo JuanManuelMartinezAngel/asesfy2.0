@@ -18,7 +18,7 @@ const PricingPlans = () => {
       ],
       buttonText: "Elegir Plan Básico",
       buttonVariant: "outline" as const,
-      stripeLink: "https://buy.stripe.com/4gM9AU0fm0HJbgZ3GObo408"
+      stripeLink: "https://buy.stripe.com/5kQ5kE0fm0HJ2KtgtAbo40b"
     },
     {
       name: "📌 Plan Intermedio",
@@ -36,7 +36,7 @@ const PricingPlans = () => {
       ],
       buttonText: "Elegir Plan Intermedio",
       buttonVariant: "cta" as const,
-      stripeLink: "https://buy.stripe.com/00w9AU4vC8ab98Rfpwbo40a"
+      stripeLink: "https://buy.stripe.com/28E14o4vC0HJ84N3GObo40c"
     },
     {
       name: "📌 Plan Avanzado",
@@ -54,7 +54,7 @@ const PricingPlans = () => {
       ],
       buttonText: "Elegir Plan Avanzado",
       buttonVariant: "hero" as const,
-      stripeLink: "https://buy.stripe.com/bJe6oI8LSbmn84N4KSbo407"
+      stripeLink: "https://buy.stripe.com/aFabJ2d280HJetbfpwbo40d"
     }
   ];
 
