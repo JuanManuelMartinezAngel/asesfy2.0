@@ -6,9 +6,6 @@ const PricingHeader = () => {
     <header className="bg-gradient-dark py-20">
       <div className="container mx-auto px-4 text-center">
         <div className="max-w-4xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-2xl font-bold text-primary mb-4">AsesoriaTax</h1>
-          </div>
           
           <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
             Tu asesoría fiscal 100% digital, rápida y sin líos

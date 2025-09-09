@@ -8,7 +8,7 @@ const PricingFooter = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Logo y descripción */}
           <div className="md:col-span-1">
-            <h3 className="text-xl font-bold text-primary mb-4">AsesoriaTax</h3>
+            <h3 className="text-xl font-bold text-primary mb-4">Asesfy</h3>
             <p className="text-muted-foreground mb-4">
               Tu asesoría fiscal digital de confianza. Simplificamos tus obligaciones tributarias.
             </p>
@@ -71,7 +71,7 @@ const PricingFooter = () => {
         <div className="border-t border-border mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm">
-              © 2024 AsesoriaTax. Todos los derechos reservados.
+              © 2024 Asesfy. Todos los derechos reservados.
             </p>
             <div className="flex gap-6 text-sm">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
