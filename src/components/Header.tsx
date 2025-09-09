@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Cart } from "./Cart";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,6 +24,7 @@ const Header = () => {
     { label: "Beneficios", href: "#beneficios", type: "scroll" },
     { label: "Testimonios", href: "#testimonios", type: "scroll" },
     { label: "Precios", href: "/pricing", type: "route" },
+    { label: "Servicios Puntuales", href: "/servicios", type: "route" },
     { label: "FAQ", href: "#faq", type: "scroll" },
   ];
 
@@ -77,8 +79,9 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Cart and CTA Button */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Cart />
             <Button
               variant="cta"
               size="lg"
@@ -110,14 +113,16 @@ const Header = () => {
                   {item.label}
                 </button>
               ))}
-              <Button
-                variant="cta"
-                size="lg"
-                className="mt-4"
-                onClick={() => window.open("https://tally.so/r/31QNWg", "_blank")}
-              >
-                Empezar ahora
-              </Button>
+              <div className="flex items-center justify-between mt-4">
+                <Cart />
+                <Button
+                  variant="cta"
+                  size="lg"
+                  onClick={() => window.open("https://tally.so/r/31QNWg", "_blank")}
+                >
+                  Empezar ahora
+                </Button>
+              </div>
             </nav>
           </div>
         )}
