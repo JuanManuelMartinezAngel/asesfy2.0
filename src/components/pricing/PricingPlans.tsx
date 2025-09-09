@@ -109,6 +109,7 @@ const PricingPlans = () => {
                     variant={plan.buttonVariant}
                     size="lg" 
                     className="w-full font-semibold"
+                    onClick={() => window.open("https://tally.so/r/31QNWg", "_blank")}
                   >
                     {plan.buttonText}
                   </Button>

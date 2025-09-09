@@ -12,7 +12,12 @@ const PricingFooter = () => {
             <p className="text-muted-foreground mb-4">
               Tu asesoría fiscal digital de confianza. Simplificamos tus obligaciones tributarias.
             </p>
-            <Button variant="cta" size="sm" className="w-full">
+            <Button 
+              variant="cta" 
+              size="sm" 
+              className="w-full"
+              onClick={() => window.open("https://tally.so/r/31QNWg", "_blank")}
+            >
               <MessageCircle className="w-4 h-4 mr-2" />
               WhatsApp directo
             </Button>

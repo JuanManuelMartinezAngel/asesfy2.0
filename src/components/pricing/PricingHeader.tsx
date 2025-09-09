@@ -15,14 +15,24 @@ const PricingHeader = () => {
           </h2>
           
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Planes mensuales o servicios únicos, tú decides
+            Planes de suscripción mensual adaptados a tus necesidades
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="hero" size="lg" className="text-lg">
+            <Button 
+              variant="hero" 
+              size="lg" 
+              className="text-lg"
+              onClick={() => window.open("https://tally.so/r/31QNWg", "_blank")}
+            >
               Empezar ahora
             </Button>
-            <Button variant="outline" size="lg" className="text-lg">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="text-lg"
+              onClick={() => window.open("https://tally.so/r/31QNWg", "_blank")}
+            >
               <Phone className="w-5 h-5 mr-2" />
               Solicitar llamada gratuita
             </Button>
