@@ -73,9 +73,9 @@ function ServicesPageContent() {
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 space-y-6">
+            <div className="sticky top-24 h-[80vh] flex flex-col">
               {/* Cart Button for Desktop */}
-              <div className="hidden lg:block">
+              <div className="hidden lg:block mb-4">
                 <Button
                   onClick={openCart}
                   variant="outline"
@@ -94,8 +94,10 @@ function ServicesPageContent() {
                 </Button>
               </div>
 
-              {/* Quote Form */}
-              <QuoteForm />
+              {/* Scrollable Form Container */}
+              <div className="flex-1 overflow-hidden">
+                <QuoteForm />
+              </div>
             </div>
           </div>
         </div>

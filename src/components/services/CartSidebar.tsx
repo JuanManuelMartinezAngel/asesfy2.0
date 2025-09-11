@@ -9,7 +9,7 @@ import { ShoppingCart, X, Edit2, Trash2, Plus, Minus } from 'lucide-react';
 import AddServiceModal from './AddServiceModal';
 
 export default function CartSidebar() {
-  const { state, removeItem, updateItem, clearCart, closeCart } = useCart();
+  const { state, removeItem, updateItem, clearCart, closeCart, openCart } = useCart();
   const [editingItem, setEditingItem] = useState<CartItem | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -50,17 +50,21 @@ export default function CartSidebar() {
 
   if (!state.isOpen) {
     return (
-      <div className="fixed right-4 bottom-4 z-50">
+      <div className="fixed right-4 bottom-4 z-50 lg:hidden">
         <Button
-          onClick={() => closeCart()}
+          onClick={() => openCart()}
           size="lg"
-          className="rounded-full shadow-lg relative"
+          className={`rounded-full shadow-lg relative transition-all duration-300 ${
+            state.items.length > 0 
+              ? 'bg-primary hover:bg-primary/90 animate-pulse' 
+              : 'bg-gray-600 hover:bg-gray-700'
+          }`}
         >
           <ShoppingCart className="h-5 w-5" />
           {state.items.length > 0 && (
             <Badge 
               variant="destructive" 
-              className="absolute -top-2 -right-2 h-6 w-6 rounded-full p-0 flex items-center justify-center text-xs"
+              className="absolute -top-2 -right-2 h-6 w-6 rounded-full p-0 flex items-center justify-center text-xs animate-bounce"
             >
               {state.items.length}
             </Badge>
