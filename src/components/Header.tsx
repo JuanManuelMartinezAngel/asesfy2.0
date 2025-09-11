@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,8 +33,8 @@ const Header = () => {
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // Handle external routes
-      window.location.href = href;
+      // Handle React Router navigation
+      navigate(href);
     }
     setIsMobileMenuOpen(false);
   };
@@ -44,9 +46,12 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="text-2xl font-bold text-primary">
+          <button 
+            onClick={() => navigate("/")}
+            className="text-2xl font-bold text-primary hover:text-primary/80 transition-colors"
+          >
             Asesfy
-          </div>
+          </button>
 
           {/* Desktop Menu */}
           <nav className="hidden md:flex items-center space-x-8">
