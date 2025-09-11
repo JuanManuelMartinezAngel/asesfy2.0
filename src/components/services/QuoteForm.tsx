@@ -234,6 +234,58 @@ export default function QuoteForm() {
         <CardDescription>
           Completa tus datos para recibir un presupuesto personalizado
         </CardDescription>
+        
+        {/* Submit Button - Prominently placed at top */}
+        <div className="mt-4 p-4 bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg border border-primary/20">
+          <Button
+            onClick={handleSubmit}
+            className={`w-full transition-all duration-300 ${
+              state.items.length > 0 
+                ? 'bg-primary hover:bg-primary/90 shadow-lg animate-pulse' 
+                : 'bg-gray-400 hover:bg-gray-500'
+            }`}
+            disabled={isSubmitting}
+            size="lg"
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Enviando solicitud...
+              </>
+            ) : (
+              <>
+                <Send className="h-4 w-4 mr-2" />
+                Solicitar presupuesto
+                {state.items.length > 0 && (
+                  <span className="ml-2 bg-white bg-opacity-30 rounded-full px-3 py-1 text-xs font-semibold">
+                    {state.items.length} servicio{state.items.length !== 1 ? 's' : ''}
+                  </span>
+                )}
+              </>
+            )}
+          </Button>
+          
+          {/* Cart status indicator */}
+          {state.items.length > 0 ? (
+            <p className="text-center text-sm text-green-600 mt-2 font-medium">
+              ✓ {state.items.reduce((sum, item) => sum + item.quantity, 0)} servicios listos para cotizar
+            </p>
+          ) : (
+            <p className="text-center text-sm text-gray-500 mt-2">
+              Añade servicios al carrito para continuar
+            </p>
+          )}
+          
+          {/* Validation Message */}
+          {!isFormValid && validationMessage && state.items.length > 0 && (
+            <Alert variant="destructive" className="mt-3">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription className="text-sm">
+                {validationMessage}
+              </AlertDescription>
+            </Alert>
+          )}
+        </div>
       </CardHeader>
       
       <CardContent className="flex-1 flex flex-col">
@@ -342,43 +394,9 @@ export default function QuoteForm() {
             )}
           </div>
 
-          {/* Validation Message */}
-          {!isFormValid && validationMessage && (
-            <Alert variant="destructive" className="mt-4">
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription className="text-sm">
-                {validationMessage}
-              </AlertDescription>
-            </Alert>
-          )}
-
-          {/* Submit Button */}
-          <div className="pt-4 border-t">
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={isSubmitting}
-              size="lg"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  Enviando solicitud...
-                </>
-              ) : (
-                <>
-                  <Send className="h-4 w-4 mr-2" />
-                  Solicitar presupuesto
-                  {state.items.length > 0 && (
-                    <span className="ml-2 bg-white bg-opacity-20 rounded-full px-2 py-1 text-xs">
-                      {state.items.length}
-                    </span>
-                  )}
-                </>
-              )}
-            </Button>
-            {/* Debug info */}
-            <div className="mt-2 text-xs text-gray-500">
+          {/* Debug info */}
+          <div className="mt-4 pt-4 border-t">
+            <div className="text-xs text-gray-500">
               Debug: Carrito: {state.items.length}, Nombre: "{formData.fullName}", Email: "{formData.email}", Tipo: "{formData.clientType}"
             </div>
           </div>
