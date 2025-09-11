@@ -18,14 +18,21 @@ const Header = () => {
     { label: "Inicio", href: "#inicio" },
     { label: "Cómo funciona", href: "#como-funciona" },
     { label: "Beneficios", href: "#beneficios" },
+    { label: "Precios", href: "/pricing" },
     { label: "Testimonios", href: "#testimonios" },
     { label: "FAQ", href: "#faq" },
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const handleNavigation = (href: string) => {
+    if (href.startsWith("#")) {
+      // Handle internal page scrolling
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // Handle external routes
+      window.location.href = href;
     }
     setIsMobileMenuOpen(false);
   };
@@ -46,7 +53,7 @@ const Header = () => {
             {menuItems.map((item) => (
               <button
                 key={item.label}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => handleNavigation(item.href)}
                 className="text-foreground hover:text-primary transition-colors duration-300"
               >
                 {item.label}
@@ -81,7 +88,7 @@ const Header = () => {
               {menuItems.map((item) => (
                 <button
                   key={item.label}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleNavigation(item.href)}
                   className="text-left text-foreground hover:text-primary transition-colors duration-300"
                 >
                   {item.label}

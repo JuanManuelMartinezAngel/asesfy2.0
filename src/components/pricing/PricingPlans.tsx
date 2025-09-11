@@ -7,53 +7,61 @@ const PricingPlans = () => {
   const plans = [
     {
       name: "Plan Básico",
-      price: "60",
+      price: "69",
       icon: User,
-      description: "Ideal para autónomos con actividad sencilla",
+      description: "Para autónomos que empiezan o con pocos trámites",
       popular: false,
       features: [
-        "Hasta 5 facturas trimestrales",
-        "Alta y baja de autónomo",
-        "Presentación de modelos básicos (303, 130)",
-        "Asesoramiento por email",
-        "1 revisión anual extra"
+        "Presentación trimestral de impuestos (hasta 20 facturas/trim.)",
+        "Modelo anual (resumen IVA/IRPF)",
+        "1 consulta fiscal/mes (email o llamada corta)",
+        "15% de descuento en servicios puntuales"
       ],
-      buttonText: "Quiero este plan",
-      buttonVariant: "outline" as const
+      buttonText: "Elegir Plan Básico",
+      buttonVariant: "outline" as const,
+      stripeUrl: "https://buy.stripe.com/4gM9AU0fm0HJbgZ3GObo408",
+      subtitle: "Presentamos tus impuestos sin complicarte y te acompañamos por chat/llamada corta. Incluye trimestrales (hasta 20 facturas/trim.), modelo anual y 1 consulta/mes. Además, 15% de descuento en servicios puntuales."
     },
     {
-      name: "Plan Profesional",
-      price: "150",
+      name: "Plan Intermedio",
+      price: "159",
       icon: Users,
-      description: "Para profesionales que necesitan más gestión",
+      description: "Para autónomos con más volumen o pymes pequeñas",
       popular: true,
       features: [
-        "Hasta 20 facturas trimestrales",
-        "Asesoramiento mensual (1h)",
-        "Factura electrónica incluida",
-        "Gestión de requerimientos AEAT",
-        "Resumen anual y modelos adicionales",
-        "Consultoría personalizada"
+        "Todo lo del Plan Básico",
+        "Trimestrales hasta 50 facturas/trim.",
+        "Contabilidad mensual básica (registro ingresos/gastos + libros)",
+        "2 consultas/mes (email o videollamada)",
+        "Requerimientos AEAT simples incluidos",
+        "1 modelo adicional/año (p. ej., 036, 840 o ROI)",
+        "20% de descuento en servicios puntuales"
       ],
-      buttonText: "Me interesa este plan",
-      buttonVariant: "cta" as const
+      buttonText: "Elegir Plan Intermedio",
+      buttonVariant: "cta" as const,
+      stripeUrl: "https://buy.stripe.com/28E14o4vC0HJ84N3GObo40c",
+      subtitle: "Nos ocupamos también de tu contabilidad. Trimestrales (hasta 50 facturas/trim.), 2 consultas/mes, requerimientos simples incluidos y 1 modelo adicional al año (036/840/ROI). 20% de descuento en servicios puntuales."
     },
     {
-      name: "Plan Premium",
-      price: "300",
+      name: "Plan Avanzado",
+      price: "259",
       icon: Building,
-      description: "Máxima tranquilidad para tu negocio",
+      description: "Para pymes con mayor complejidad y prioridad alta",
       popular: false,
       features: [
-        "Facturas ilimitadas",
-        "Contabilidad completa + libros + cuentas anuales",
-        "Gestión laboral básica (hasta 3 empleados)",
-        "2h de consultoría al mes",
-        "Trámites internacionales (modelo 720, 233, etc.)",
-        "Soporte prioritario"
+        "Todo lo del Plan Intermedio",
+        "Trimestrales sin límite de facturas",
+        "Nóminas básicas hasta 3 empleados (extras con tarifa reducida)",
+        "Requerimientos complejos (AEAT/Seg. Social)",
+        "Hasta 5 consultas/mes",
+        "SLA prioridad: respuesta <4 h laborables",
+        "25–30% de descuento en puntuales",
+        "⚠️ CIERRE CONTABLE y CUENTAS ANUALES: NO incluidos → Add-on con precio preferente"
       ],
-      buttonText: "Quiero máxima tranquilidad",
-      buttonVariant: "hero" as const
+      buttonText: "Elegir Plan Avanzado",
+      buttonVariant: "hero" as const,
+      stripeUrl: "https://buy.stripe.com/bJe6oI8LSbmn84N4KSbo407",
+      subtitle: "Servicio proactivo con prioridad. Trimestrales sin límite, nóminas (hasta 3 empleados), requerimientos complejos y hasta 5 consultas/mes. SLA <4 h. 25–30% de descuento en puntuales. Cierre contable y Cuentas Anuales no incluidos (add-on)."
     }
   ];
 
@@ -89,7 +97,7 @@ const PricingPlans = () => {
                   <CardTitle className="text-2xl font-bold">{plan.name}</CardTitle>
                   <div className="flex items-center justify-center gap-2">
                     <span className="text-4xl font-bold text-primary">{plan.price}€</span>
-                    <span className="text-muted-foreground">/mes</span>
+                    <span className="text-muted-foreground">/mes (IVA incl.)</span>
                   </div>
                   <CardDescription className="text-base mt-2">
                     {plan.description}
@@ -97,6 +105,9 @@ const PricingPlans = () => {
                 </CardHeader>
 
                 <CardContent className="space-y-4">
+                  <div className="text-sm text-muted-foreground italic mb-4 px-2">
+                    "{plan.subtitle}"
+                  </div>
                   {plan.features.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-start gap-3">
                       <Check className="w-5 h-5 text-success mt-0.5 flex-shrink-0" />
@@ -110,6 +121,7 @@ const PricingPlans = () => {
                     variant={plan.buttonVariant}
                     size="lg" 
                     className="w-full"
+                    onClick={() => window.open(plan.stripeUrl, "_blank")}
                   >
                     {plan.buttonText}
                   </Button>
@@ -117,6 +129,45 @@ const PricingPlans = () => {
               </Card>
             );
           })}
+        </div>
+        
+        {/* Footer Messages */}
+        <div className="text-center mt-12 space-y-4">
+          <p className="text-lg text-muted-foreground">
+            IVA incluido. Sin permanencia. Cancela cuando quieras.
+          </p>
+          <p className="text-base text-muted-foreground">
+            ¿Necesitas algo suelto?{" "}
+            <a href="#servicios-puntuales" className="text-primary hover:underline">
+              Mira nuestros Servicios Puntuales
+            </a>
+            . Si te suscribes, tendrás precio preferente.
+          </p>
+        </div>
+
+        {/* Add-ons and Key Conditions */}
+        <div className="mt-16 max-w-4xl mx-auto">
+          <h3 className="text-2xl font-bold text-center mb-8">Add-ons y condiciones clave</h3>
+          <div className="bg-muted/50 rounded-lg p-6 space-y-4">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Servicios adicionales</h4>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• <strong>Cuentas Anuales</strong> (NO incluidas en ningún plan): add-on con precio preferente para suscriptores</li>
+                  <li>• <strong>Cierre contable</strong>: también add-on (preferente para Plan Avanzado)</li>
+                  <li>• <strong>Nóminas extra</strong>: a partir del 4.º empleado, tarifa reducida por empleado</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Límites y condiciones</h4>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• <strong>Límites de facturas</strong>: contadores por trimestre claros en Básico/Intermedio</li>
+                  <li>• <strong>Plan Avanzado</strong>: sin límite de facturas trimestrales</li>
+                  <li>• Todos los planes incluyen descuentos progresivos en servicios puntuales</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
