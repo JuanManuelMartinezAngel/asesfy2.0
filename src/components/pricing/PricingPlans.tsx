@@ -138,7 +138,7 @@ const PricingPlans = () => {
           </p>
           <p className="text-base text-muted-foreground">
             ¿Necesitas algo suelto?{" "}
-            <a href="#servicios-puntuales" className="text-primary hover:underline">
+            <a href="/services" className="text-primary hover:underline">
               Mira nuestros Servicios Puntuales
             </a>
             . Si te suscribes, tendrás precio preferente.
