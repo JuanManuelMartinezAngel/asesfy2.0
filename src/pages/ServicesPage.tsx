@@ -73,7 +73,7 @@ function ServicesPageContent() {
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 h-[80vh] flex flex-col">
+            <div className="sticky top-24 h-[calc(100vh-6rem)] flex flex-col">
               {/* Cart Button for Desktop */}
               <div className="hidden lg:block mb-4">
                 <Button
