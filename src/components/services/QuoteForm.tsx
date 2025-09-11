@@ -225,23 +225,24 @@ export default function QuoteForm() {
   }
 
   return (
-    <Card className="h-full flex flex-col">
-      <CardHeader className="pb-4">
-        <CardTitle className="flex items-center gap-2">
-          <Send className="h-5 w-5" />
-          Solicitar Presupuesto
-        </CardTitle>
-        <CardDescription>
-          Completa tus datos para recibir un presupuesto personalizado
-        </CardDescription>
-        
-        {/* Submit Button - Prominently placed at top */}
-        <div className="mt-4 p-4 bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg border border-primary/20">
+    <div className="space-y-6">
+      {/* Submit Button Section - Always visible at top */}
+      <Card>
+        <CardHeader className="pb-4">
+          <CardTitle className="flex items-center gap-2">
+            <Send className="h-5 w-5" />
+            Solicitar Presupuesto
+          </CardTitle>
+          <CardDescription>
+            Completa tus datos para recibir un presupuesto personalizado
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
           <Button
             onClick={handleSubmit}
-            className={`w-full transition-all duration-300 ${
+            className={`w-full ${
               state.items.length > 0 
-                ? 'bg-primary hover:bg-primary/90 shadow-lg animate-pulse' 
+                ? 'bg-primary hover:bg-primary/90' 
                 : 'bg-gray-400 hover:bg-gray-500'
             }`}
             disabled={isSubmitting}
@@ -265,7 +266,7 @@ export default function QuoteForm() {
             )}
           </Button>
           
-          {/* Cart status indicator */}
+          {/* Status indicator */}
           {state.items.length > 0 ? (
             <p className="text-center text-sm text-green-600 mt-2 font-medium">
               ✓ {state.items.reduce((sum, item) => sum + item.quantity, 0)} servicios listos para cotizar
@@ -285,22 +286,28 @@ export default function QuoteForm() {
               </AlertDescription>
             </Alert>
           )}
-        </div>
-      </CardHeader>
-      
-      <CardContent className="flex-1 flex flex-col">
-        {submitStatus === 'error' && (
-          <Alert variant="destructive" className="mb-4">
-            <AlertCircle className="h-4 w-4" />
-            <AlertDescription>
-              {errorMessage || 'Ha ocurrido un error al enviar tu solicitud. Por favor, inténtalo de nuevo.'}
-            </AlertDescription>
-          </Alert>
-        )}
+        </CardContent>
+      </Card>
 
-        <form onSubmit={handleSubmit} className="flex-1 flex flex-col space-y-4">
-          {/* Form Fields */}
-          <div className="space-y-4 flex-1">
+      {/* Form Section - Separate card for better usability */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg">Tus Datos</CardTitle>
+          <CardDescription>
+            Rellena la información para recibir tu presupuesto
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {submitStatus === 'error' && (
+            <Alert variant="destructive" className="mb-4">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>
+                {errorMessage || 'Ha ocurrido un error al enviar tu solicitud. Por favor, inténtalo de nuevo.'}
+              </AlertDescription>
+            </Alert>
+          )}
+
+          <div className="space-y-4">
             {/* Full Name */}
             <div>
               <Label htmlFor="fullName">
@@ -374,34 +381,38 @@ export default function QuoteForm() {
                 disabled={isSubmitting}
               />
             </div>
+          </div>
+        </CardContent>
+      </Card>
 
-            {/* Cart Summary */}
-            {state.items.length > 0 && (
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h4 className="font-medium text-sm mb-3 flex items-center gap-2">
-                  <ShoppingCart className="h-4 w-4" />
-                  Servicios seleccionados ({state.items.reduce((sum, item) => sum + item.quantity, 0)})
-                </h4>
-                <div className="space-y-2 max-h-40 overflow-y-auto">
-                  {state.items.map((item) => (
-                    <div key={item.id} className="text-sm text-gray-600 flex justify-between items-start">
-                      <span className="flex-1 pr-2">{item.service.name}</span>
-                      <span className="text-xs bg-gray-200 px-2 py-1 rounded">x{item.quantity}</span>
-                    </div>
-                  ))}
+      {/* Cart Summary - Separate card */}
+      {state.items.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg flex items-center gap-2">
+              <ShoppingCart className="h-5 w-5" />
+              Servicios Seleccionados ({state.items.reduce((sum, item) => sum + item.quantity, 0)})
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {state.items.map((item) => (
+                <div key={item.id} className="flex justify-between items-start p-3 bg-gray-50 rounded-lg">
+                  <span className="flex-1 pr-2 font-medium">{item.service.name}</span>
+                  <span className="text-sm bg-primary text-primary-foreground px-2 py-1 rounded">
+                    x{item.quantity}
+                  </span>
                 </div>
-              </div>
-            )}
-          </div>
-
-          {/* Debug info */}
-          <div className="mt-4 pt-4 border-t">
-            <div className="text-xs text-gray-500">
-              Debug: Carrito: {state.items.length}, Nombre: "{formData.fullName}", Email: "{formData.email}", Tipo: "{formData.clientType}"
+              ))}
             </div>
-          </div>
-        </form>
-      </CardContent>
-    </Card>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Debug info */}
+      <div className="text-xs text-gray-500 p-3 bg-gray-50 rounded">
+        Debug: Carrito: {state.items.length}, Nombre: "{formData.fullName}", Email: "{formData.email}", Tipo: "{formData.clientType}"
+      </div>
+    </div>
   );
 }
