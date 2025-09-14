@@ -1,8 +1,27 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Calculator, BookOpen, Users, Receipt, Mail } from "lucide-react";
+import ServiceRequestModal from "@/components/ServiceRequestModal";
 
 const UniqueServices = () => {
+  const [selectedService, setSelectedService] = useState<{
+    name: string;
+    price: string;
+    category: string;
+  } | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleServiceRequest = (serviceName: string, servicePrice: string, category: string) => {
+    setSelectedService({ name: serviceName, price: servicePrice, category });
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedService(null);
+  };
+
   const serviceCategories = [
     {
       title: "Altas y Trámites Generales",
@@ -93,9 +112,17 @@ const UniqueServices = () => {
                   ))}
                   
                   <div className="pt-4">
-                    <Button variant="outline" size="sm" className="w-full">
-                      Solicitar este trámite
-                    </Button>
+                    {category.services.map((service, serviceIndex) => (
+                      <Button 
+                        key={serviceIndex}
+                        variant="outline" 
+                        size="sm" 
+                        className="w-full mb-2"
+                        onClick={() => handleServiceRequest(service.name, service.price, category.title)}
+                      >
+                        Solicitar {service.name}
+                      </Button>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
@@ -109,6 +136,17 @@ const UniqueServices = () => {
           </Button>
         </div>
       </div>
+
+      {/* Modal para solicitar servicios */}
+      {selectedService && (
+        <ServiceRequestModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          serviceName={selectedService.name}
+          servicePrice={selectedService.price}
+          category={selectedService.category}
+        />
+      )}
     </section>
   );
 };
